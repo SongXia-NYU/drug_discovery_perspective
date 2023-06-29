@@ -1,0 +1,3 @@
+[submodule "sPhysNet-MT"]
+	path = sPhysNet-MT
+	url = https://github.com/SongXia-NYU/sPhysNet-MT.git
