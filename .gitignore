@@ -1,0 +1,2 @@
+# used to submit jobs on SLURM clusters
+*.sbatch
