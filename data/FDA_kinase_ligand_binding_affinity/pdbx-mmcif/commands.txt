@@ -1,0 +1,1 @@
+wget -i JMC_PDB_cif.txt -B https://files.rcsb.org/view/

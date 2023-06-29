@@ -1,0 +1,1 @@
+wget -i JMC_PDB_pdb.txt -B https://files.rcsb.org/view/
