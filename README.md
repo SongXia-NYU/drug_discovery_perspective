@@ -1,1 +1,2 @@
-# drug_descovery_perspective
+# Integrated Molecular Modeling and Machine Learning for Drug Design
+
