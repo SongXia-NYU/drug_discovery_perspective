@@ -1,3 +1,6 @@
 [submodule "sPhysNet-MT"]
 	path = sPhysNet-MT
 	url = https://github.com/SongXia-NYU/sPhysNet-MT.git
+[submodule "Frag20_prepare"]
+	path = Frag20_prepare
+	url = https://github.com/jenniening/Frag20_prepare.git
