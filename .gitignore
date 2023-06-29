@@ -1,2 +1,4 @@
 # used to submit jobs on SLURM clusters
 *.sbatch
+# slurm output file
+slurm-*.out
