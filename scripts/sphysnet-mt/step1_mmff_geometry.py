@@ -7,7 +7,14 @@ Generate MMFF-optimized geometries from SMILES using the protocol described in t
 from typing import List
 import pandas as pd
 import os
+import os.path as osp
 import time
+import rdkit
+import numpy as np
+import shutil
+from rdkit.Chem import SDMolSupplier
+from glob import glob
+import subprocess
 from Frag20_prepare.DataGen.genconfs import runGenerator
 
 lig_info_df: pd.DataFrame = pd.read_csv("data/FDA_kinase_ligand_binding_affinity/lig_info.csv")
@@ -29,11 +36,39 @@ for i in range(lig_info_df.shape[0]):
 
 # ----generate up to 300 conformations and optimize with MMFF---- #
 tic = time.time()
-save_folder = "./data/mmff_geometries/confs_300"
-os.makedirs(save_folder, exist_ok=True)
-runGenerator(file_handle_list, smiles_list, "fda_drugs", save_folder)
+multi_conf_folder = "./data/mmff_geometries/confs_300"
+os.makedirs(multi_conf_folder, exist_ok=True)
+runGenerator(file_handle_list, smiles_list, "fda_drugs", multi_conf_folder)
 tok = time.time()
 print("Total time running conformation generation and MMFF optimization: {:.1f}s".format(tok - tic))
+# On a single CPU:
+# >>> Total time running conformation generation and MMFF optimization: 1650.3s
 
-# TODO: Select the conformation with the lowest MMFF-optmized energy
-save_folder = "./data/mmff_geometries/conf_lowest"
+# ----Select the conformation with the lowest MMFF-optmized energy---- #
+tic = time.time()
+lowest_conf_folder = "./data/mmff_geometries/conf_lowest"
+os.makedirs(lowest_conf_folder, exist_ok=True)
+multi_conf_sdfs: List[str] = glob(osp.join(multi_conf_folder, "*_*_confors.sdf"))
+for multi_conf_sdf in multi_conf_sdfs:
+    with SDMolSupplier(multi_conf_sdf, removeHs=False) as suppl:
+        mol_list = [mol for mol in suppl]
+    lowest_energy_mol: rdkit.Chem.rdchem.Mol = None
+    lowest_energy: float = np.inf
+
+    for mol in mol_list:
+        mmff_energy: float = float(mol.GetProp("energy_abs"))
+        if mmff_energy < lowest_energy:
+            lowest_energy = mmff_energy
+            lowest_energy_mol = mol
+    file_handle: str = osp.basename(multi_conf_sdf).split("_confors")[0]
+    writer = rdkit.Chem.SDWriter(osp.join(lowest_conf_folder, f"{file_handle}.sdf"))
+    writer.write(lowest_energy_mol)
+tok = time.time()
+print("Total time running conformation selection: {:.1f}s".format(tok - tic))
+# On a single CPU:
+# >>> Total time running conformation selection: 3.7s
+
+# ----Clean up---- #
+# archive the SDF files with multiple conformations as they are no longer needed
+subprocess.run("tar caf confs_300.tar.gz confs_300/", shell=True, check=True, cwd="./data/mmff_geometries")
+shutil.rmtree(multi_conf_folder)
