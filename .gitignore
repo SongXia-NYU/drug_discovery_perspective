@@ -2,3 +2,5 @@
 *.sbatch
 # slurm output file
 slurm-*.out
+# trained models
+/data/models
