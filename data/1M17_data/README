@@ -1,0 +1,3 @@
+PDB_files: ligand and PDB_apo files used to calculate the XGB score 
+XGB_files: Calculated XGB parameters following Lin_F9 local optimization and with bridge waters and metal features calculated
+lig_info: the BindingDB data and ligand RCSB file
