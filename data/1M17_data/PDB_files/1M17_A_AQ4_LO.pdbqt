@@ -1,0 +1,47 @@
+REMARK minimizedAffinity -9.94803333
+REMARK minimizedRMSD 0.520308137
+REMARK  0 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK       I    between atoms: C5_5  and  N1_6 
+REMARK       I    between atoms: N1_6  and  C6_7 
+REMARK       I    between atoms: C9_10  and  O1_11 
+REMARK       I    between atoms: O1_11  and  C10_12 
+REMARK       I    between atoms: C10_12  and  C11_13 
+REMARK       I    between atoms: C11_13  and  O2_14 
+REMARK       I    between atoms: C13_16  and  O3_17 
+REMARK       I    between atoms: O3_17  and  C14_18 
+REMARK       I    between atoms: C14_18  and  C15_19 
+REMARK       I    between atoms: C15_19  and  O4_20 
+ROOT
+HETATM    1  C1  AQ4 A 999      29.812  -2.333  53.581  1.00  0.00     0.018 C 
+HETATM    2  C2  AQ4 A 999      29.149  -1.338  53.456  1.00  0.00    -0.078 C 
+HETATM    3  C3  AQ4 A 999      28.353  -0.188  53.317  1.00  0.00     0.019 A 
+HETATM    4  C4  AQ4 A 999      26.963  -0.340  53.244  1.00  0.00     0.050 A 
+HETATM    5  C5  AQ4 A 999      26.136   0.786  53.107  1.00  0.00     0.035 A 
+HETATM    6  N1  AQ4 A 999      24.691   0.590  53.035  1.00  0.00    -0.340 N 
+HETATM    7  C6  AQ4 A 999      23.751  -0.266  53.741  1.00  0.00     0.142 A 
+HETATM    8  C7  AQ4 A 999      22.385  -0.310  53.371  1.00  0.00     0.042 A 
+HETATM    9  C8  AQ4 A 999      21.914   0.452  52.297  1.00  0.00     0.057 A 
+HETATM   10  C9  AQ4 A 999      20.562   0.400  51.935  1.00  0.00     0.103 A 
+HETATM   11  O1  AQ4 A 999      20.077   1.219  50.786  1.00  0.00    -0.346 OA
+HETATM   12  C10 AQ4 A 999      21.072   1.269  49.730  1.00  0.00     0.201 C 
+HETATM   13  C11 AQ4 A 999      20.838   2.530  48.888  1.00  0.00     0.193 C 
+HETATM   14  O2  AQ4 A 999      19.606   2.395  48.141  1.00  0.00    -0.394 OA
+HETATM   15  C12 AQ4 A 999      18.314   2.624  48.954  1.00  0.00     0.201 C 
+HETATM   16  C13 AQ4 A 999      19.659  -0.440  52.654  1.00  0.00     0.104 A 
+HETATM   17  O3  AQ4 A 999      18.191  -0.531  52.293  1.00  0.00    -0.346 OA
+HETATM   18  C14 AQ4 A 999      17.660   0.758  51.844  1.00  0.00     0.201 C 
+HETATM   19  C15 AQ4 A 999      16.138   0.713  51.651  1.00  0.00     0.193 C 
+HETATM   20  O4  AQ4 A 999      15.494   0.470  52.916  1.00  0.00    -0.394 OA
+HETATM   21  C16 AQ4 A 999      14.194  -0.337  52.803  1.00  0.00     0.201 C 
+HETATM   22  C17 AQ4 A 999      20.139  -1.201  53.721  1.00  0.00     0.072 A 
+HETATM   23  C18 AQ4 A 999      21.487  -1.153  54.077  1.00  0.00     0.075 A 
+HETATM   24  N2  AQ4 A 999      21.968  -1.946  55.181  1.00  0.00    -0.241 NA
+HETATM   25  C19 AQ4 A 999      23.332  -1.890  55.538  1.00  0.00     0.236 A 
+HETATM   26  N3  AQ4 A 999      24.218  -1.049  54.822  1.00  0.00    -0.224 NA
+HETATM   27  C20 AQ4 A 999      26.706   2.080  53.043  1.00  0.00     0.029 A 
+HETATM   28  C21 AQ4 A 999      28.104   2.235  53.117  1.00  0.00     0.004 A 
+HETATM   29  C22 AQ4 A 999      28.933   1.100  53.254  1.00  0.00     0.021 A 
+HETATM   30  H   AQ4 A 999      24.259   1.163  52.360  1.00  0.00     0.167 HD
+ENDROOT
+TORSDOF 10
