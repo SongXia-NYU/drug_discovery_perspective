@@ -5,10 +5,26 @@ from glob import glob
 import os
 import os.path as osp
 import time
+from argparse import ArgumentParser
+from rdkit.Chem import SDMolSupplier, MolToInchiKey, MolFromSmiles
 from typing import DefaultDict, Dict, List, Tuple, Union
 import pandas as pd
 
 from predict import EnsPredictor
+
+# ----parsing arguments---- #
+parser = ArgumentParser()
+parser.add_argument("--smiles_list", nargs="+", required=True)
+args = parser.parse_args()
+
+# ----prepareing SMILES information for the FDA approved drugs---- #
+# smiles_list contains SMILES information
+smiles_list: List[str] = args.smiles_list
+# file_handle_list contains file handles which is used as the file names
+file_handle_list: List[str] = []
+for smiles in smiles_list:
+    inchi_key: str = MolToInchiKey(MolFromSmiles(smiles))
+    file_handle_list.append(inchi_key)
 
 tic = time.time()
 
@@ -23,9 +39,10 @@ model_paths_exp = "./data/models/exp_ultimate_freeSolv_13_RDrun_2022-05-20_10030
 pred_info: Dict[str, List[Union[str, float]]] = DefaultDict(lambda: [])
 mmff_geometries: List[str] = glob("./data/mmff_geometries/conf_lowest/*.sdf")
 
-for mmff_sdf in mmff_geometries:
-    file_handle: str = osp.basename(mmff_sdf).split(".sdf")[0]
-    pred_info["file_handle"].append(file_handle)
+for smiles, file_handle in zip(smiles_list, file_handle_list):
+    mmff_sdf = osp.join("./data/mmff_geometries/conf_lowest", f"{file_handle}.sdf")
+    pred_info["SMILES"].append(smiles)
+    pred_info["InchiKey"].append(file_handle)
 
     # predict DFT level properties
     calc_predictor = EnsPredictor(model_paths_calc, mmff_sdf)
@@ -40,12 +57,10 @@ for mmff_sdf in mmff_geometries:
     pred_info["E_hydration(kcal/mol)"].append(pred["E_hydration"])
     pred_info["LogP"].append(pred["LogP"])
 
-pred_df: pd.DataFrame = pd.DataFrame(pred_info).set_index("file_handle")
-out_dir = "./data/predictions"
-os.makedirs(out_dir, exist_ok=True)
-pred_df.to_csv(osp.join(out_dir, "sphysnet-mt.csv"))
-
 tok = time.time()
 print("Total time running sPhysNet-MT: {:.1f}s".format(tok - tic))
-# On a single CPU:
-# Total time running sPhysNet-MT: 204.7s
+
+pred_df: pd.DataFrame = pd.DataFrame(pred_info).set_index("InchiKey")
+print("The prediction by sPhysNet-MT-ens5: ")
+print(pred_df)
+
