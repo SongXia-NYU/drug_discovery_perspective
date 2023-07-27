@@ -1,5 +1,11 @@
 # Integrated Molecular Modeling and Machine Learning for Drug Design
 In this tutorial, we will demonstrate how to use calculation and analysis tools mentioned in the perspective paper [Integrated Molecular Modeling and Machine Learning for Drug Design]().
+
+## Clone this Repo
+```
+git clone --recurse-submodules -j8 https://github.com/SongXia-NYU/drug_discovery_perspective.git
+```
+
 ![](./data/example_1m17.png)
 
 ## A. Protein Pocket Identification and Analysis with AlphaSpace
