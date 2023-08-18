@@ -4,3 +4,9 @@
 [submodule "Frag20_prepare"]
 	path = Frag20_prepare
 	url = https://github.com/jenniening/Frag20_prepare.git
+[submodule "AlphaSpace2"]
+	path = AlphaSpace2
+	url = https://github.com/RedesignScience/AlphaSpace2
+[submodule "delta_LinF9_XGB"]
+	path = delta_LinF9_XGB
+	url = https://github.com/cyangNYU/delta_LinF9_XGB
