@@ -18,12 +18,12 @@ cd AlphaSpace2
 pip install .
 ```
 
-I you have trouble installing mdtraj, try installing it with conda
+If you have trouble installing mdtraj, try installing it with conda
 ``` bash
 conda install -c conda-forge mdtraj
 ```
 
-To properly prepare the receptors for the calculation of β-score require the installation of 3rd party tools
+Proper preparation of the receptors for the calculation of β-score requires the installation of 3rd party tools
 - [`pdb2pqr30`](https://pdb2pqr.readthedocs.io/en/latest/) 
 - [`MGLtools`](https://ccsb.scripps.edu/mgltools/)
 
@@ -46,9 +46,9 @@ You can now run the corresponding jupyter notebook in `script/1M17_AS2.ipynb`. T
 jupyter notebook jupyter_notebooks/1M17_AS2.ipynb
 ```
 
-## B. Binding affinity prediction of crystal EGFR-Erlotinib pose with $\text{\Delta_{LinF9}XGB}$
+## B. Binding affinity prediction of crystal EGFR-Erlotinib pose with $\Delta_\text{{Lin\_F9}}\text{XGB}$
 ### Environment Setup
-You can follow [this link to install $\text{\Delta_{LinF9}XGB}$](https://github.com/cyangNYU/delta_LinF9_XGB). A linux system is required to run Smina, the docking tool that is used to incorporate the Lin_F9 scoring function.
+You can follow [this link to install $\Delta_\text{{Lin\_F9}}\text{XGB}$](https://github.com/cyangNYU/delta_LinF9_XGB). A linux system is required to run Smina, the docking tool that is used to incorporate the Lin_F9 scoring function.
 
 Similar to AlphaSpace2, it is necessary to install 3rd packages to properly prepare the receptors
 - [`pdb2pqr30`](https://pdb2pqr.readthedocs.io/en/latest/) 
@@ -60,7 +60,7 @@ Similar to AlphaSpace2, it is necessary to install 3rd packages to properly prep
 3) Then you can delete the last two columns of the `.pqr` file so that it can be input into the `prepare_receptor4.py` tool. Input the altered `.pqr` file to [`prepare_receptor4.py` function from MGLtools](https://ccsb.scripps.edu/mgltools/) to generate the charges and output a `.pdbqt` file. Use the `-U nphs` flag to retain only the non-polar hydrogens.
 4) Use the `prepare_ligand4.py` tool to generate charges for the ligand and output a `.pdbqt` file. Use the `-U nphs` flag to retain only the non-polar hydrogens.
 
-### Calculation of $\text{\Delta_{LinF9}XGB}$
+### Calculation of $\Delta_\text{{Lin\_F9}}\text{XGB}$
 Once you've done these preparation, generate the features used by the XGBoost model with `delta_LinF9_XGB/script/runFeatures.sh`. It is important to input the altered `.pqr` file and `.pdbqt` files into `runFeatures.sh` script
 
 Then you can run the `delta_LinF9_XGB/script/runXGB.py` script. This script will run Smina with the Lin_F9 scoring function, calculate all of the appropriate features, and run the XGBoost model to predict the correction to the Lin_F9 scoring function.
