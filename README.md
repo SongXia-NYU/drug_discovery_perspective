@@ -1,5 +1,5 @@
 # Integrated Molecular Modeling and Machine Learning for Drug Design
-In this tutorial, we will demonstrate how to use calculation and analysis tools mentioned in the perspective paper [Integrated Molecular Modeling and Machine Learning for Drug Design]().
+In this tutorial, we will demonstrate how to use calculation and analysis tools mentioned in the perspective paper [Integrated Molecular Modeling and Machine Learning for Drug Design](https://pubs.acs.org/doi/10.1021/acs.jctc.3c00814).
 
 ## Clone this Repo
 ```
